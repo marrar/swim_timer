@@ -25,7 +25,7 @@ elif layout_mode == "Desktop":
 else:
     # Auto (safe default)
     n_cols = 3
-st.title("🏊 Swim Finish Timer 4000m")
+st.title("🏊 Swim Finish Timer - EcoNado 4000m")
 
 @st.cache_data
 def load_roster():
@@ -151,8 +151,10 @@ if st.session_state.results:
     )
 
     st.subheader("Overall Results")
+    final_df.index = pd.RangeIndex(start=1, stop=len(final_df)+1)
+    final_df.index.name='Rank'
     st.dataframe(
-        final_df[["SwimmerID", "Name", "Age", "Age Category", "Finish Time"]],
+        final_df[["Name","SwimmerID", "Age", "Age Category", "Finish Time"]],
         use_container_width=True
     )
 
@@ -161,12 +163,14 @@ if st.session_state.results:
     for category in final_df["Age Category"].unique():
         st.markdown(f"### 🏅 {category}")
         cat_df = final_df[final_df["Age Category"] == category]
-
+        cat_df = cat_df.reset_index(drop=True)
+        cat_df.index = pd.RangeIndex(start=1, stop=len(cat_df)+1)
+        cat_df.index.name='Rank'
         st.dataframe(
-            cat_df[["SwimmerID", "Name", "Age", "Finish Time"]],
+            cat_df[["Name","SwimmerID", "Age", "Finish Time"]],
             use_container_width=True
         )
-    final_df=final_df[["SwimmerID", "Name", "Age", "Age Category", "Finish Time"]]
+    final_df=final_df[["Name","SwimmerID", "Age", "Age Category", "Finish Time"]]
     csv = final_df.to_csv(index=False).encode("utf-8")
     st.download_button(
         "⬇️ Download Results CSV",
