@@ -77,17 +77,20 @@ with col2:
     chrono_placeholder = st.empty()
 
     if st.session_state.start_time:
-        st_autorefresh(interval=200, key="chrono_refresh")
+        st_autorefresh(interval=200, key="chrono_refresh_col2")
+
         elapsed = time.time() - st.session_state.start_time
 
-        minutes = int(elapsed // 60)
-        seconds = elapsed % 60
+        hours = int(elapsed // 3600)
+        minutes = int((elapsed % 3600) // 60)
+        seconds = int(elapsed % 60)
+        centiseconds = int((elapsed - int(elapsed)) * 100)
 
         chrono_placeholder.markdown(
-            f"### ⏱️  {minutes:02d}:{seconds:05.2f}"
+            f"### ⏱️  {hours:02d}:{minutes:02d}:{seconds:02d}.{centiseconds:02d}"
         )
     else:
-        chrono_placeholder.markdown("### ⏱️  00:00.00")
+        chrono_placeholder.markdown("### ⏱️  00:00:00.00")
 
 
 
@@ -116,8 +119,17 @@ for i in range(num_swimmers):
                 use_container_width=True,
                 disabled=st.session_state.start_time is None
             ):
-                finish_time = time.time() - st.session_state.start_time
-                st.session_state.results[swimmer_id] = round(finish_time, 2)
+                #finish_time = time.time() - st.session_state.start_time
+                #st.session_state.results[swimmer_id] = round(finish_time, 2)
+                elapsed = time.time() - st.session_state.start_time
+
+                hours = int(elapsed // 3600)
+                minutes = int((elapsed % 3600) // 60)
+                seconds = int(elapsed % 60)
+
+                finish_time = f"{hours:02d}:{minutes:02d}:{seconds:02d}"
+
+                st.session_state.results[swimmer_id] = finish_time
 
 
 # --- Results table ---
@@ -128,19 +140,19 @@ st.subheader("Results")
 if st.session_state.results:
     times_df = pd.DataFrame(
         st.session_state.results.items(),
-        columns=["SwimmerID", "Finish Time (s)"]
+        columns=["SwimmerID", "Finish Time"]
     )
 
     final_df = (
         times_df
         .merge(roster, on="SwimmerID", how="left")
-        .sort_values("Finish Time (s)")
+        .sort_values("Finish Time")
         .reset_index(drop=True)
     )
 
     st.subheader("Overall Results")
     st.dataframe(
-        final_df[["SwimmerID", "Name", "Age", "Age Category", "Finish Time (s)"]],
+        final_df[["SwimmerID", "Name", "Age", "Age Category", "Finish Time"]],
         use_container_width=True
     )
 
@@ -151,10 +163,10 @@ if st.session_state.results:
         cat_df = final_df[final_df["Age Category"] == category]
 
         st.dataframe(
-            cat_df[["SwimmerID", "Name", "Age", "Finish Time (s)"]],
+            cat_df[["SwimmerID", "Name", "Age", "Finish Time"]],
             use_container_width=True
         )
-
+    final_df=final_df[["SwimmerID", "Name", "Age", "Age Category", "Finish Time"]]
     csv = final_df.to_csv(index=False).encode("utf-8")
     st.download_button(
         "⬇️ Download Results CSV",
