@@ -55,7 +55,10 @@ with col1:
         st.session_state.results = {}
 
 with col2:
-    chrono_placeholder = st.empty()
+    st.markdown("### ⏱️ Race Time")
+
+    chrono_text = st.empty()
+    progress = st.progress(0)
 
     if st.session_state.start_time is not None:
         elapsed = time.time() - st.session_state.start_time
@@ -63,17 +66,16 @@ with col2:
         minutes = int(elapsed // 60)
         seconds = elapsed % 60
 
-        chrono_placeholder.markdown(
+        chrono_text.markdown(
             f"<h1 style='text-align:center'>⏱️ {minutes:02d}:{seconds:05.2f}</h1>",
             unsafe_allow_html=True
         )
 
-        # refresh every 0.2 s
-        time.sleep(0.2)
-        st.experimental_rerun()
+        # Progress bar cycles every 60 s (visual chronometer)
+        progress.progress(int(elapsed % 60) / 60)
 
     else:
-        chrono_placeholder.markdown(
+        chrono_text.markdown(
             "<h1 style='text-align:center'>⏱️ 00:00.00</h1>",
             unsafe_allow_html=True
         )
