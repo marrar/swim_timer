@@ -1,7 +1,7 @@
 import streamlit as st
 import time
 import pandas as pd
-
+from streamlit_autorefresh import st_autorefresh
 
 @st.cache_data
 def load_roster():
@@ -55,30 +55,20 @@ with col1:
         st.session_state.results = {}
 
 with col2:
-    st.markdown("### ⏱️ Race Time")
+    chrono_placeholder = st.empty()
 
-    chrono_text = st.empty()
-    progress = st.progress(0)
-
-    if st.session_state.start_time is not None:
+    if st.session_state.start_time:
+        st_autorefresh(interval=200, key="chrono_refresh")
         elapsed = time.time() - st.session_state.start_time
 
         minutes = int(elapsed // 60)
         seconds = elapsed % 60
 
-        chrono_text.markdown(
-            f"<h1 style='text-align:center'>⏱️ {minutes:02d}:{seconds:05.2f}</h1>",
-            unsafe_allow_html=True
+        chrono_placeholder.markdown(
+            f"### ⏱️  {minutes:02d}:{seconds:05.2f}"
         )
-
-        # Progress bar cycles every 60 s (visual chronometer)
-        progress.progress(int(elapsed % 60) / 60)
-
     else:
-        chrono_text.markdown(
-            "<h1 style='text-align:center'>⏱️ 00:00.00</h1>",
-            unsafe_allow_html=True
-        )
+        chrono_placeholder.markdown("### ⏱️  00:00.00")
 
 
 
