@@ -1,7 +1,7 @@
 import streamlit as st
 import time
 import pandas as pd
-from streamlit_autorefresh import st_autorefresh
+
 
 @st.cache_data
 def load_roster():
