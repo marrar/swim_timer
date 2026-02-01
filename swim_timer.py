@@ -8,6 +8,23 @@ st.set_page_config(
     layout="wide"
 )
 
+st.sidebar.header("Layout")
+
+layout_mode = st.sidebar.radio(
+    "Button layout",
+    ["Auto", "Mobile", "Tablet", "Desktop"],
+    index=0
+)
+
+if layout_mode == "Mobile":
+    n_cols = 2
+elif layout_mode == "Tablet":
+    n_cols = 3
+elif layout_mode == "Desktop":
+    n_cols = 5
+else:
+    # Auto (safe default)
+    n_cols = 3
 st.title("🏊 Swim Finish Timer 4000m")
 
 @st.cache_data
@@ -44,7 +61,7 @@ if "start_time" not in st.session_state:
     st.session_state.results = {}
 
 # --- Start race ---
-col1, col2 = st.columns([1, 4])
+col1, col2 = st.columns(1)
 with col1:
     start_disabled = st.session_state.start_time is not None
 
@@ -80,11 +97,11 @@ st.divider()
 st.subheader("Finish Buttons")
 
 num_swimmers = 100
-cols = st.columns(5)  # 5 columns for better mobile layout
+cols = st.columns(n_cols)  # n_cols columns for better mobile layout
 
 for i in range(num_swimmers):
     swimmer_id = i+1
-    col = cols[i % 5]
+    col = cols[i % n_cols]
 
     with col:
         if swimmer_id in st.session_state.results:
