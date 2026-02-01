@@ -1,6 +1,7 @@
 import streamlit as st
 import time
 import pandas as pd
+from streamlit_autorefresh import st_autorefresh
 
 @st.cache_data
 def load_roster():
@@ -8,12 +9,32 @@ def load_roster():
 
 roster = load_roster()
 
+def age_category(age):
+    if age <= 29:
+        return "18-29"
+    elif age <= 39:
+        return "30-39"
+    elif age <= 49:
+        return "40-49"
+    elif age <= 59:
+        return "50-59"
+    elif age <=69:
+        return "60-69"
+    elif age <= 79:
+        return "70-79"
+    elif age <= 89:
+        return "80-89"
+    else:
+        return "Open"
+
+roster["Age Category"] = roster["Age"].apply(age_category)
+
 st.set_page_config(
-    page_title="Swim Finish Timer",
+    page_title="Swim Finish Timer 4000",
     layout="wide"
 )
 
-st.title("🏊 Swim Finish Timer")
+st.title("🏊 Swim Finish Timer 4000m")
 
 # --- Initialize state ---
 if "start_time" not in st.session_state:
@@ -22,18 +43,33 @@ if "start_time" not in st.session_state:
 
 # --- Start race ---
 col1, col2 = st.columns([1, 4])
-
 with col1:
-    if st.button("▶️ START RACE", use_container_width=True):
+    start_disabled = st.session_state.start_time is not None
+
+    if st.button(
+        "▶️ START RACE",
+        use_container_width=True,
+        disabled=start_disabled
+    ):
         st.session_state.start_time = time.time()
         st.session_state.results = {}
 
 with col2:
+    chrono_placeholder = st.empty()
+
     if st.session_state.start_time:
+        st_autorefresh(interval=200, key="chrono_refresh")
         elapsed = time.time() - st.session_state.start_time
-        st.metric("Race Time", f"{elapsed:.2f} s")
+
+        minutes = int(elapsed // 60)
+        seconds = elapsed % 60
+
+        chrono_placeholder.markdown(
+            f"### ⏱️ {minutes:02d}:{seconds:05.2f}"
+        )
     else:
-        st.metric("Race Time", "—")
+        chrono_placeholder.markdown("### ⏱️ 00:00.00")
+
 
 st.divider()
 
@@ -63,9 +99,11 @@ for i in range(num_swimmers):
                 finish_time = time.time() - st.session_state.start_time
                 st.session_state.results[swimmer_id] = round(finish_time, 2)
 
+
 # --- Results table ---
 st.divider()
 st.subheader("Results")
+
 
 if st.session_state.results:
     times_df = pd.DataFrame(
@@ -80,17 +118,29 @@ if st.session_state.results:
         .reset_index(drop=True)
     )
 
+    st.subheader("Overall Results")
     st.dataframe(
-        final_df[["SwimmerID", "Name", "Age", "Finish Time (s)"]],
+        final_df[["SwimmerID", "Name", "Age", "Age Category", "Finish Time (s)"]],
         use_container_width=True
     )
+
+    st.subheader("Results by Age Category")
+
+    for category in final_df["Age Category"].unique():
+        st.markdown(f"### 🏅 {category}")
+        cat_df = final_df[final_df["Age Category"] == category]
+
+        st.dataframe(
+            cat_df[["SwimmerID", "Name", "Age", "Finish Time (s)"]],
+            use_container_width=True
+        )
 
     csv = final_df.to_csv(index=False).encode("utf-8")
     st.download_button(
         "⬇️ Download Results CSV",
         csv,
-        "swim_results_with_names.csv",
+        "swim_results_by_age_category.csv",
         "text/csv"
     )
-else:
+else:   
     st.info("No finish times recorded yet.")
