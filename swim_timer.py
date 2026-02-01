@@ -17,7 +17,7 @@ layout_mode = st.sidebar.radio(
 )
 
 if layout_mode == "Mobile":
-    n_cols = 2
+    n_cols = 1
 elif layout_mode == "Tablet":
     n_cols = 3
 elif layout_mode == "Desktop":
