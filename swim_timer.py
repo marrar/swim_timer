@@ -3,6 +3,13 @@ import time
 import pandas as pd
 from streamlit_autorefresh import st_autorefresh
 
+st.set_page_config(
+    page_title="Swim Finish Timer 4000",
+    layout="wide"
+)
+
+st.title("🏊 Swim Finish Timer 4000m")
+
 @st.cache_data
 def load_roster():
     return pd.read_csv("swimmers.csv")
@@ -29,12 +36,7 @@ def age_category(age):
 
 roster["Age Category"] = roster["Age"].apply(age_category)
 
-st.set_page_config(
-    page_title="Swim Finish Timer 4000",
-    layout="wide"
-)
 
-st.title("🏊 Swim Finish Timer 4000m")
 
 # --- Initialize state ---
 if "start_time" not in st.session_state:
