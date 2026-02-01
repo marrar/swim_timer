@@ -57,18 +57,22 @@ with col1:
 with col2:
     chrono_placeholder = st.empty()
 
-    if st.session_state.start_time:
-        st_autorefresh(interval=200, key="chrono_refresh")
-        elapsed = time.time() - st.session_state.start_time
+    if st.session_state.start_time is not None:
+        st.autorefresh(interval=200, key="chrono_refresh")
 
+        elapsed = time.time() - st.session_state.start_time
         minutes = int(elapsed // 60)
         seconds = elapsed % 60
 
         chrono_placeholder.markdown(
-            f"### ⏱️ {minutes:02d}:{seconds:05.2f}"
+            f"<h1 style='text-align:center'>⏱️ {minutes:02d}:{seconds:05.2f}</h1>",
+            unsafe_allow_html=True
         )
     else:
-        chrono_placeholder.markdown("### ⏱️ 00:00.00")
+        chrono_placeholder.markdown(
+            "<h1 style='text-align:center'>⏱️ 00:00.00</h1>",
+            unsafe_allow_html=True
+        )
 
 
 st.divider()
