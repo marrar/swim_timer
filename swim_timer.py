@@ -61,7 +61,7 @@ if "start_time" not in st.session_state:
     st.session_state.results = {}
 
 # --- Start race ---
-col1, col2 = st.columns(1)
+col1, col2 = st.columns([2,3])
 with col1:
     start_disabled = st.session_state.start_time is not None
 
