@@ -1,0 +1,123 @@
+SwimmerID,Name,Age,Gender,Race Category,Club
+1,Nahuel cardozo ,30,Masculino,500. Iniciación a las aguas abiertas,Ando nadando pilar
+2,Macías Lorena ,46,Femenino,500. Iniciación a las aguas abiertas,Aquasport
+3,Nicolás Ruiz Díaz ,45,Masculino,500. Iniciación a las aguas abiertas,Acuasport 
+4,Karen Volpe,21,Femenino,500. Iniciación a las aguas abiertas,Aquatime
+5,Emilia papagno,62,Femenino,500. Iniciación a las aguas abiertas,
+6,Juan José Flores ,14,Masculino,500. Iniciación a las aguas abiertas,Acuasport 
+7,Sol Ebersbach ,10,Femenino,500. Iniciación a las aguas abiertas,Megatlon pilar
+8,Ivan Fekete Bustillo,30,Masculino,500. Iniciación a las aguas abiertas,Aquatime
+9,Alejandro Martín Ebersbach,52,Masculino,500. Iniciación a las aguas abiertas,Megatlon pilar
+10,Denise Orrego ,36,Femenino,500. Iniciación a las aguas abiertas,Club sportivo
+11,Alejandra Madaio,34,Femenino,500. Iniciación a las aguas abiertas,Club San Fernando Escuela Adultos
+12,Sandra  Saptie,56,Femenino,500. Iniciación a las aguas abiertas,Club San Fernando
+13,Luciano Cetraro,49,Masculino,500. Iniciación a las aguas abiertas,Club San Fernando
+14,Sergio Matias Cetraro ,51,Masculino,500. Iniciación a las aguas abiertas,San fernando 
+15,Angela Rocca,43,Femenino,500. Iniciación a las aguas abiertas,GEBA
+16,Nadia Zottola ,46,Femenino,500. Iniciación a las aguas abiertas,Club portugués 
+17,Alejandra Madaio,34,Femenino,500. Iniciación a las aguas abiertas,Club San Fernando
+18,Debora Mercado ,24,Femenino,500. Iniciación a las aguas abiertas,Club San Fernando 
+19,Federico Vecchio ,37,Masculino,4.000 Competitiva,Triatlón para todos
+20,Nancy Bacino,51,Femenino,4.000 Competitiva,Tribu- Municipalidad de Vicente Lopez
+21,José Luis Ramirez ,54,Masculino,4.000 Competitiva,AndoNadando 
+22,Mariano Oscar Procacci,44,Masculino,4.000 Competitiva,Acuasport
+23,José Maximiliano ,42,Masculino,4.000 Competitiva,Acuasport pilar 
+24,Leonardo Boechi,48,Masculino,4.000 Competitiva,Acuaesport
+25,Gustavo Duffourc ,53,Masculino,4.000 Competitiva,Libertadores 
+26,Ignacio Inzua,24,Masculino,4.000 Competitiva,
+27,Gabriel Alejandro Policaro ,51,Masculino,4.000 Competitiva,Acuasport
+28,Vanessa parody,41,Femenino,4.000 Competitiva,Megatlon pilar
+29,Aluhe Maité Cordano Imas ,15,Femenino,4.000 Competitiva,Sociedad italiana de Luján 
+30,Virginia Borche ,56,Femenino,4.000 Competitiva,Acuasport 
+31,Esteban Della Mattia ,49,Masculino,4.000 Competitiva,Ando Nadando
+32,Martin Orlando,28,Masculino,4.000 Competitiva,Sociedad Italiana de Lujan
+33,Sebastián Casale ,42,Masculino,4.000 Competitiva,Tac SKIN. - Club Argentino de Quilmes 
+34,Rodrigo Juarez,31,Masculino,4.000 Competitiva,CLUB SPORTIVO ESCOBAR
+35,Hernán Barcessat,53,Masculino,4.000 Competitiva,Los Titanes de Nacho 
+36,gabriel Mastromonaco,57,Masculino,4.000 Competitiva,los titanes de Nacho
+37,Rocio Caparros,34,Femenino,4.000 Competitiva,Estilo libre de sport club
+38,Roman Bertino,42,Masculino,4.000 Competitiva,Estilo Libre Natación Pilar
+39,Maria Martina Viavattene,38,Femenino,4.000 Competitiva,Oxigeno
+40,Zulma Elizabeth Miron ,42,Femenino,4.000 Competitiva,TAC
+41,Pablo van pamel,41,Masculino,4.000 Competitiva,Club Independiente Zarate
+42,Milagros Cavia Urruti,29,Femenino,4.000 Competitiva,Aquaragnar 
+43,Sebastián Urtasun ,33,Masculino,4.000 Competitiva,Lugano tenis club
+44,Sonia Quiñones ,58,Femenino,4.000 Competitiva,Acuasport 
+45,Jordan Capitan ,55,Masculino,4.000 Competitiva,
+46,Emilia Manfredi,50,Femenino,4.000 Competitiva,NOELIA PETTI TEAM
+47,Hernan Pelaez,52,Masculino,4.000 Competitiva,Ateneo Popular de Versalles
+48,Ferrisi Matias ,31,Masculino,4.000 Competitiva,CAI Escobar 
+49,María María Carmen García Nieto ,28,Femenino,4.000 Competitiva,CAI Escobar 
+50,Ailin Tranmar,40,Femenino,4.000 Competitiva,Black Team 
+51,Claudia Wagner ,56,Femenino,4.000 Competitiva,Mydley 
+52,Kevin Rios,26,Masculino,4.000 Competitiva,Aquaragnar
+53,Lorena Esquivel,45,Femenino,1.500 Competitiva,Triatlón para todos
+54,Daniel Lempke ,32,Masculino,1.500 Competitiva,Ando Nadando
+55,Ulises Girosa ,46,Masculino,1.500 Competitiva,Andonadando 
+56,Carmen Naon Reyes,40,Femenino,1.500 Competitiva,Ando Nadando
+57,Alejandra miño,40,Femenino,1.500 Competitiva,Ando Nadando
+58,Elizabeth Moyano,56,Femenino,1.500 Competitiva,Andonadando
+59,Lucia Gomez,46,Femenino,1.500 Competitiva,Acuasport -Sportivo Pilar 
+60,Hugo Rogelio Astudillo ,59,Masculino,1.500 Competitiva,"Acuasport, sportivo Pilar "
+61,Celeste Carrivale,31,Femenino,1.500 Competitiva,Aquatime 
+62,Juan Ignacio Ruiz ,42,Masculino,1.500 Competitiva,Andonadando Pilar
+63,Eduardo Gabriel Gómez,40,Masculino,1.500 Competitiva,Andonadando
+64,Silvana Thern ,51,Femenino,1.500 Competitiva,Andonadando 
+65,Maximiliano Vidal,32,Masculino,1.500 Competitiva,Ando nadando 
+66,sebastian cabral,27,Masculino,1.500 Competitiva,ando nadando
+67,Brenda Moral ,25,Femenino,1.500 Competitiva,Acuasport
+68,Cristian Iván rodriguez ,17,Masculino,1.500 Competitiva,Aquatime
+69,Liliana Haydee García ,69,Femenino,1.500 Competitiva,Municipalidad de Vicente López aguas abiertas Villa Adelina
+70,Nicolas Antonio Fekete Bustillo ,35,Masculino,1.500 Competitiva,Aquatime
+71,Pedro Ruiz,43,Masculino,1.500 Competitiva,"La Tribu, Villa Martelli - Zona Norte"
+72,Liliana Haydee García ,69,Femenino,1.500 Competitiva,Municipalidad de Vicente López 
+73,Joel ezequiel sosa,31,Masculino,1.500 Competitiva,Acuasport master
+74,Roxana Inglese,51,Femenino,1.500 Competitiva,ADN Training Group
+75,Ana María Maldonado ,50,Femenino,1.500 Competitiva,Fitness club ( Haedo junior)
+76,Martin Pucheta,34,Masculino,1.500 Competitiva,Ando Nadando
+77,Diego Ferrando ,63,Masculino,1.500 Competitiva,
+78,Rocio Araoz ,42,Femenino,1.500 Competitiva,Club Sportivo escobar 
+79,Maria Claudia Unrein ,47,Femenino,1.500 Competitiva,Club Sportivo Escobar 
+80,Facundo Waitzel,29,Masculino,1.500 Competitiva,Acuasport 
+81,MARÍA CLAUDIA UNREIN ,47,Femenino,1.500 Competitiva,Sportivo Escobar 
+82,Ruben Saavedra ,37,Masculino,1.500 Competitiva,CLUB SPORTIVO ESCOBAR 
+83,Cecilia Bassignana ,44,Femenino,1.500 Competitiva,Aguas Abiertas Club Sportivo/Andamio 
+84,Analia Vanesa Orsini,46,Femenino,1.500 Competitiva,Acuasport
+85,Luciano Javier Sztainbock ,47,Masculino,1.500 Competitiva,Club Sportivo Escobar 
+86,Oscar diego serrano ,47,Masculino,1.500 Competitiva,CLUB SPORTIVO ESCOBAR  
+87,Santiago Francisco Segovia ,24,Masculino,1.500 Competitiva,Club San Fernando 
+88,Constanza van Gelderen,43,Femenino,1.500 Competitiva,Team Pilar Geijo
+89,Juan Lucas Pau,39,Masculino,1.500 Competitiva,
+90,Fernando Franco,39,Masculino,1.500 Competitiva,
+91,Juan Alberto Mameli,36,Masculino,1.500 Competitiva,Estilo libre Pilar 
+92,Manuel montaño,31,Masculino,1.500 Competitiva,Estilo libre
+93,Julia julian ,34,Femenino,1.500 Competitiva,Acuaspor 
+94,Maia Agustina Stedile ,21,Femenino,1.500 Competitiva,
+95,Ignacio Fraguio,46,Masculino,1.500 Competitiva,Ando Nadando (Pilar)
+96,Felicitas Arana,20,Femenino,1.500 Competitiva,Sportivo
+97,Lisandro Dolera Jaime ,50,Masculino,1.500 Competitiva,Acuasport 
+98,Diego Diaz ,56,Masculino,1.500 Competitiva,AquaRagnar
+99,Nestor Ramirez,34,Masculino,1.500 Competitiva,Aquaragnar
+100,Felipe Diaz,15,Masculino,1.500 Competitiva,Aquaragnar
+101,Santiago Francisco Segovia ,24,Masculino,1.500 Competitiva,Club San Fernando 
+102,Alexis Bosco,48,Masculino,1.500 Competitiva,
+103,Walter Ricardo Garibaldi ,66,Masculino,1.500 Competitiva,Ando Nadando Pilar 
+104,Johana Rojas,15,Femenino,1.500 Competitiva,Ando Nadando Pilar
+105,Mariela Bilbao,50,Femenino,1.500 Competitiva,Aven3 Brisas
+106,Lila Antonella Garcia,36,Femenino,1.500 Competitiva,Aven3 Brisas /Adn
+107,ALEJANDRA MORINIGO,55,Femenino,1.500 Competitiva,Aven3-ADN
+108,Romina Gisele luna,38,Femenino,1.500 Competitiva,Adven3/ADN
+109,Luis Gonzalo Ponti,42,Masculino,1.500 Competitiva,ANDONADANDO
+110,Julio Alejandro larosa,49,Masculino,1.500 Competitiva,Estilo libre
+111,Andrés Fernando Alcocer Ortega ,32,Masculino,1.500 Competitiva,
+112,Hernán Piaciola,37,Masculino,1.500 Competitiva,Estilo libre pilar
+113,Viviana Lucía Gerard ,37,Femenino,1.500 Competitiva,
+114,Eduardo Fernandez-Duque,61,Masculino,1.500 Competitiva,AndoNadando
+115,Lucia rios,24,Femenino,1.500 Competitiva,Sportclub/Cacyp
+116,Franco Collao,24,Masculino,1.500 Competitiva,Aquasport
+117,María Verónica Yoshihara ,57,Femenino,1.500 Competitiva,Aven 3 ADN
+118,Facundo Quispe,34,Masculino,1.500 Competitiva,Aquatime
+119,Nadia Elena Lozano ,41,Femenino,1.500 Competitiva,Natación Mega (Megatlon) 
+120,Adolfo Vercellone,63,Masculino,1.500 Competitiva,Sport Club Don Torcuato
+121,Hernán Ibáñez ,55,Masculino,1.500 Competitiva,All boys 
+122,Fabiana Saravia ,50,Femenino,1.500 Competitiva,
