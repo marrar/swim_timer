@@ -25,17 +25,57 @@ elif layout_mode == "Desktop":
 else:
     # Auto (safe default)
     n_cols = 3
-st.title("🏊 Swim Finish Timer 4000m")
+st.title("🏊 Swim Finish Timer - EcoNado Puerto Pilar")
 
 @st.cache_data
 def load_roster():
-    return pd.read_csv("swimmers.csv")
+    return pd.read_csv("swimmers_real.csv")
 
 roster = load_roster()
 
+roster = pd.read_csv("swimmers_real.csv")
+
+# 1️⃣ Remove swimmers where viene == "no"
+roster = roster[
+    roster["Viene"].fillna("").str.lower().str.strip() != "no"
+]
+
+# 3️⃣ Sort by Race Category (and optionally Name)
+roster = roster.sort_values(
+    by=["Race Category", "Name"]
+)
+
+# 4️⃣ Reset index
+roster = roster.reset_index(drop=True)
+
+# 5️⃣ Create SwimmerID starting at 1
+roster["SwimmerID"] = range(1, len(roster) + 1)
+
+roster.to_csv("swimmers_cleaned.csv", index=False)
+
+
+
+st.subheader("Seleccionar Categoria")
+
+# Get unique race categories
+race_categories = sorted(roster["Race Category"].dropna().unique())
+
+selected_category = st.selectbox(
+    "Choose a race category:",
+    race_categories
+)
+
+filtered_swimmers = roster[
+    roster["Race Category"] == selected_category
+]
+
 def age_category(age):
+    if age < 14:
+        return "Menores de 14"
+    if age <= 19:
+        return "14-19"
     if age <= 29:
-        return "18-29"
+        return "20-29"
     elif age <= 39:
         return "30-39"
     elif age <= 49:
@@ -44,10 +84,8 @@ def age_category(age):
         return "50-59"
     elif age <=69:
         return "60-69"
-    elif age <= 79:
-        return "70-79"
-    elif age <= 89:
-        return "80-89"
+    elif age > 70:
+        return "Mayores de 70"
     else:
         return "Open"
 
@@ -66,7 +104,7 @@ with col1:
     start_disabled = st.session_state.start_time is not None
 
     if st.button(
-        "▶️ START RACE",
+        "▶️ Comenzar carrera",
         use_container_width=True,
         disabled=start_disabled
     ):
@@ -97,30 +135,38 @@ with col2:
 st.divider()
 
 # --- Swimmer buttons ---
-st.subheader("Finish Buttons")
+st.subheader("Llegadas")
 
-num_swimmers = 100
+num_swimmers = 150
 cols = st.columns(n_cols)  # n_cols columns for better mobile layout
 
-for i in range(num_swimmers):
-    swimmer_id = i+1
+
+st.subheader("Nadadores")
+
+# Adjust columns for layout (better for mobile if 2–3 columns)
+cols = st.columns(3)
+
+num_swimmers = len(filtered_swimmers)
+
+for i, row in enumerate(filtered_swimmers.itertuples()):
+    swimmer_id = row.SwimmerID
     col = cols[i % n_cols]
 
     with col:
         if swimmer_id in st.session_state.results:
             st.button(
-                f"✅ {i+1}",
+                f"✅ {swimmer_id}",
                 disabled=True,
-                use_container_width=True
+                use_container_width=True,
+                key=f"done_{swimmer_id}"
             )
         else:
             if st.button(
-                f"🏁 {i+1}",
+                f"🏁 {swimmer_id}",
                 use_container_width=True,
-                disabled=st.session_state.start_time is None
+                disabled=st.session_state.start_time is None,
+                key=f"btn_{swimmer_id}"
             ):
-                #finish_time = time.time() - st.session_state.start_time
-                #st.session_state.results[swimmer_id] = round(finish_time, 2)
                 elapsed = time.time() - st.session_state.start_time
 
                 hours = int(elapsed // 3600)
@@ -132,12 +178,13 @@ for i in range(num_swimmers):
                 st.session_state.results[swimmer_id] = finish_time
 
 
+
 # --- Results table ---
 st.divider()
-st.subheader("Results")
-
+st.subheader("Resultados Generales")
 
 if st.session_state.results:
+
     times_df = pd.DataFrame(
         st.session_state.results.items(),
         columns=["SwimmerID", "Finish Time"]
@@ -149,24 +196,77 @@ if st.session_state.results:
         .sort_values("Finish Time")
         .reset_index(drop=True)
     )
+    final_df = final_df.drop(columns=["Viene"])
 
-    st.subheader("Overall Results")
-    st.dataframe(
-        final_df[["SwimmerID", "Name", "Age", "Age Category", "Finish Time"]],
-        use_container_width=True
-    )
+    # Get unique genders
+    genders = sorted(final_df["Gender"].dropna().unique())
 
-    st.subheader("Results by Age Category")
+    if len(genders) > 0:
 
-    for category in final_df["Age Category"].unique():
-        st.markdown(f"### 🏅 {category}")
-        cat_df = final_df[final_df["Age Category"] == category]
+        # Create columns dynamically
+        cols = st.columns(len(genders))
 
-        st.dataframe(
-            cat_df[["SwimmerID", "Name", "Age", "Finish Time"]],
-            use_container_width=True
-        )
-    final_df=final_df[["SwimmerID", "Name", "Age", "Age Category", "Finish Time"]]
+        for col, gender in zip(cols, genders):
+
+            with col:
+                st.markdown(f"### {gender}")
+
+                gender_df = (
+                    final_df[final_df["Gender"] == gender]
+                    .sort_values("Finish Time")
+                    .reset_index(drop=True)
+                )
+
+                gender_df.index = pd.RangeIndex(
+                    start=1,
+                    stop=len(gender_df) + 1
+                )
+                gender_df.index.name = "Rank"
+
+                st.dataframe(
+                    gender_df[[
+                        "Name",
+                        "SwimmerID",
+                        "Age",
+                        "Age Category",
+                        "Club",
+                        "Finish Time"
+                    ]],
+                    use_container_width=True
+                )
+
+    
+
+    st.subheader("Resultados por categoria")
+
+    for age_category in final_df["Age Category"].unique():
+
+        st.markdown(f"## 🏅 {age_category}")
+
+        age_df = final_df[final_df["Age Category"] == age_category]
+
+        for gender in age_df["Gender"].unique():
+
+            st.markdown(f"### {gender}")
+
+            gender_df = age_df[age_df["Gender"] == gender]
+            gender_df = gender_df.sort_values("Finish Time").reset_index(drop=True)
+
+            gender_df.index = pd.RangeIndex(start=1, stop=len(gender_df)+1)
+            gender_df.index.name = "Rank"
+
+            st.dataframe(
+                gender_df[[
+                    "Name",
+                    "SwimmerID",
+                    "Age",
+                    "Gender",
+                    "Club",
+                    "Finish Time"
+                ]],
+                use_container_width=True
+            )
+
     csv = final_df.to_csv(index=False).encode("utf-8")
     st.download_button(
         "⬇️ Download Results CSV",
@@ -175,4 +275,10 @@ if st.session_state.results:
         "text/csv"
     )
 else:   
-    st.info("No finish times recorded yet.")
+    st.info("Ningun tiempo registrado aun.")
+st.markdown("---")
+
+if st.button("🛑 Parar cronometro", use_container_width=True):
+
+    st.session_state.start_time = None
+    st.success("Fin!")
