@@ -57,12 +57,14 @@ roster.to_csv("swimmers_cleaned.csv", index=False)
 
 st.subheader("Seleccionar Categoria")
 
+race_started = st.session_state.get("race_started", False)
+
 # Get unique race categories
 race_categories = sorted(roster["Race Category"].dropna().unique())
 
 selected_category = st.selectbox(
     "Choose a race category:",
-    race_categories
+    race_categories, disabled=race_started
 )
 
 filtered_swimmers = roster[
@@ -97,6 +99,8 @@ roster["Age Category"] = roster["Age"].apply(age_category)
 if "start_time" not in st.session_state:
     st.session_state.start_time = None
     st.session_state.results = {}
+else:
+    st.session_state.race_started = True
 
 # --- Start race ---
 col1, col2 = st.columns([2,3])
