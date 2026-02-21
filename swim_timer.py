@@ -29,29 +29,29 @@ st.title("🏊 Swim Finish Timer - EcoNado Puerto Pilar")
 
 @st.cache_data
 def load_roster():
-    return pd.read_csv("swimmers_real.csv")
+    return pd.read_csv("swimmers_cleaned.csv")
 
 roster = load_roster()
 
-roster = pd.read_csv("swimmers_real.csv")
+roster = pd.read_csv("swimmers_cleaned.csv")
 
 # 1️⃣ Remove swimmers where viene == "no"
-roster = roster[
-    roster["Viene"].fillna("").str.lower().str.strip() != "no"
-]
+#roster = roster[
+#    roster["Viene"].fillna("").str.lower().str.strip() != "no"
+#]
 
 # 3️⃣ Sort by Race Category (and optionally Name)
-roster = roster.sort_values(
-    by=["Race Category", "Name"]
-)
+#roster = roster.sort_values(
+#    by=["Race Category", "Name"]
+#)
 
 # 4️⃣ Reset index
-roster = roster.reset_index(drop=True)
+#roster = roster.reset_index(drop=True)
 
 # 5️⃣ Create SwimmerID starting at 1
-roster["SwimmerID"] = range(1, len(roster) + 1)
+#roster["SwimmerID"] = range(1, len(roster) + 1)
 
-roster.to_csv("swimmers_cleaned.csv", index=False)
+#roster.to_csv("swimmers_cleaned.csv", index=False)
 
 
 
